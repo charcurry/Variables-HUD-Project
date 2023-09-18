@@ -15,22 +15,26 @@ namespace Variables_HUD_Project
             float mediumEnemyScoreMultiplier = 0.2f;
             float largeEnemyScoreMultiplier = 0.3f;
             float bossScoreMultiplier = 0.5f;
+            float finalBossScoreMultiplier = 0.6f;
             float deathScoreMultiplier = -0.2f;
             int smallEnemyDamage = 10;
             int mediumEnemyDamage = 25;
             int largeEnemyDamage = 40;
             int bossDamage = 50;
+            int finalBossDamage = 60;
             float treasurePoints = 250f;
             float smallEnemyPoints = 100f;
             float mediumEnemyPoints = 200f;
             float largeEnemyPoints = 300f;
             float bossPoints = 1000f;
+            float finalBossPoints = 2000f;
             int healthPack = 15;
             string title = "Super Awesome Adventure Video Game";
             float score = 0f;
             string realName = "Charlie Curry";
             string gamerTag = "Kickycaptain";
             int health = 100;
+            int newLifeHealth = 100;
             int lives = 3;
             int oneUp = 1;
             int death = -1;
@@ -99,7 +103,7 @@ namespace Variables_HUD_Project
             health -= largeEnemyDamage;
             lives += death;
             scoreMultiplier += deathScoreMultiplier;
-            health += 100;
+            health += newLifeHealth;
 
             Console.WriteLine();
 
@@ -186,6 +190,27 @@ namespace Variables_HUD_Project
             Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
             Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
             Console.WriteLine();
+
+            Console.WriteLine("Player Encounters the Final Boss!");
+            Console.WriteLine("Player Defeats the Final Boss");
+            Console.WriteLine("Player Loses " + finalBossDamage + " Health");
+            Console.WriteLine("Player Scores " + finalBossPoints + " Points");
+            health -= finalBossDamage;
+            score += finalBossPoints * scoreMultiplier;
+            scoreMultiplier += finalBossScoreMultiplier;
+
+            Console.WriteLine();
+
+            Console.WriteLine(title);
+            Console.WriteLine("----------");
+
+            Console.WriteLine(realName + " AKA " + gamerTag);
+            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
+            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
+            Console.WriteLine();
+
+            Console.WriteLine("You Win!");
+            Console.WriteLine("Final Score: " + score + " Points");
 
             Console.ReadLine();
         }
