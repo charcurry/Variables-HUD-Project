@@ -9,6 +9,19 @@ namespace Variables_HUD_Project
 {
     internal class Program
     {
+
+        static void ShowHUD(string title, int health, float score, float scoreMultiplier, string realName, string gamerTag, int lives)
+        {
+            Console.WriteLine(title);
+            Console.WriteLine("----------");
+
+            Console.WriteLine(realName + " AKA " + gamerTag);
+            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
+            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
+
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
             float smallEnemyScoreMultiplier = 0.1f;
@@ -40,80 +53,59 @@ namespace Variables_HUD_Project
             int death = -1;
             float scoreMultiplier = 1.0f;
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
+            void TakeDamage(int damage)
+            {
+                health -= damage;
+            }
 
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
+            void AddScore(float pointsEarned)
+            {
+                score += pointsEarned * scoreMultiplier;
+            }
 
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Defeats an Enemy!");
             Console.WriteLine("Player Loses " + smallEnemyDamage + " Health");
             Console.WriteLine("Player Scores " + smallEnemyPoints + " Points");
-            score += smallEnemyPoints * scoreMultiplier;
-            health -= smallEnemyDamage;
+            AddScore(smallEnemyPoints);
+            TakeDamage(smallEnemyDamage);
             scoreMultiplier += smallEnemyScoreMultiplier;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Found Some Treasure!");
             Console.WriteLine("Player Scores " + treasurePoints + " Points");
-            score += treasurePoints * scoreMultiplier;
+            AddScore(treasurePoints);
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Defeats a Boss!");
             Console.WriteLine("Player Loses " + bossDamage + " Health");
             Console.WriteLine("Player Scores " + bossPoints + " Points");
-            score += bossPoints * scoreMultiplier;
-            health -= bossDamage;
+            AddScore(bossPoints);
+            TakeDamage(bossDamage);
             scoreMultiplier += bossScoreMultiplier;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player is Defeated by an Enemy!");
             Console.WriteLine("Player Loses " + largeEnemyDamage + " Health");
             Console.WriteLine("Player Loses a Life");
-            health -= largeEnemyDamage;
+            TakeDamage(largeEnemyDamage);
             lives += death;
             scoreMultiplier += deathScoreMultiplier;
             health += newLifeHealth;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Finds a Health Pack!");
             Console.WriteLine("Player Gains " + healthPack + " Health");
@@ -121,30 +113,18 @@ namespace Variables_HUD_Project
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Defeats an Enemy!");
             Console.WriteLine("Player Loses " + largeEnemyDamage + " Health");
             Console.WriteLine("Player Scores " + largeEnemyPoints + " Points");
-            health -= largeEnemyDamage;
-            score += largeEnemyPoints * scoreMultiplier;
+            TakeDamage(largeEnemyDamage);
+            AddScore(largeEnemyPoints);
             scoreMultiplier += largeEnemyScoreMultiplier;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Finds a One-Up!");
             Console.WriteLine("Player Gains a Life");
@@ -152,30 +132,18 @@ namespace Variables_HUD_Project
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Defeats an Enemy!");
             Console.WriteLine("Player Loses " + mediumEnemyDamage + " Health");
             Console.WriteLine("Player Scores " + mediumEnemyPoints + " Points");
-            health -= mediumEnemyDamage;
-            score += mediumEnemyPoints * scoreMultiplier;
+            TakeDamage(mediumEnemyDamage);
+            AddScore(mediumEnemyPoints);
             scoreMultiplier += mediumEnemyScoreMultiplier;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Finds a Health Pack!");
             Console.WriteLine("Player Gains " + healthPack + " Health");
@@ -183,31 +151,19 @@ namespace Variables_HUD_Project
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("Player Encounters the Final Boss!");
             Console.WriteLine("Player Defeats the Final Boss");
             Console.WriteLine("Player Loses " + finalBossDamage + " Health");
             Console.WriteLine("Player Scores " + finalBossPoints + " Points");
-            health -= finalBossDamage;
-            score += finalBossPoints * scoreMultiplier;
+            TakeDamage(finalBossDamage);
+            AddScore(finalBossPoints);
             scoreMultiplier += finalBossScoreMultiplier;
 
             Console.WriteLine();
 
-            Console.WriteLine(title);
-            Console.WriteLine("----------");
-
-            Console.WriteLine(realName + " AKA " + gamerTag);
-            Console.WriteLine("Health: " + health + " | " + "Lives: " + lives);
-            Console.WriteLine("Score: " + score + " | " + "Score Multiplier: " + scoreMultiplier);
-            Console.WriteLine();
+            ShowHUD(title, health, score, scoreMultiplier, realName, gamerTag, lives);
 
             Console.WriteLine("You Win!");
             Console.WriteLine("Final Score: " + score + " Points");
